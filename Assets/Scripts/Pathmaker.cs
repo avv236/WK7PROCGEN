@@ -10,16 +10,17 @@ public class Pathmaker : MonoBehaviour {
     public Transform floorPrefab4;
     public Transform floorPrefab5;
     public Transform pathmakerPrefab;
-
+   
 	// Use this for initialization
 	void Start () {
-	
+	    
 	}
 
     // Update is called once per frame
     void Update()
     {
 
+        
         if (counter < 50f)
         {
             float number = Random.Range(0.0f, 1.0f);
@@ -38,8 +39,30 @@ public class Pathmaker : MonoBehaviour {
                 Instantiate(pathmakerPrefab, transform.position, Quaternion.identity);
             }
 
-            Instantiate(floorPrefab, transform.position, Quaternion.identity);
+            number = Random.value;
+            Transform spawnedTile = floorPrefab1;
+            if (number < 0.1f)
+            {
+                spawnedTile = floorPrefab1;
+            }
+            else if(number < 0.4f)
+            {
+                spawnedTile = floorPrefab2;
+            }
+            else if(number < 0.6f)
+            {
+                spawnedTile = floorPrefab3;
+            }
+            else if(number < 0.8f)
+            {
+                spawnedTile = floorPrefab4;
+            }
+            else if(number <= 1.0f)
+            {
+                spawnedTile = floorPrefab5;
+            }
 
+            Instantiate(spawnedTile, transform.position, Quaternion.identity);
             transform.position += transform.forward * 5f;
             counter++;
         }
